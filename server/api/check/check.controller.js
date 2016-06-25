@@ -31,7 +31,7 @@ exports.showByUserId = function(req, res) {
 
 // Creates a new check in the DB.
 exports.create = function(req, res) {
-  Bus.findOne({number: req.params.number}, function (err, bus) {
+  Bus.findOne({number: req.body.bus.number}, function (err, bus) {
     if(err) { return handleError(res, err); }
     if(!bus) { return res.status(404).send('Not Found'); }
 
@@ -50,9 +50,11 @@ exports.update = function(req, res) {
   Check.findById(req.params.id, function (err, check) {
     if (err) { return handleError(res, err); }
     if(!check) { return res.status(404).send('Not Found'); }
-    req.body.timeEnd = Date.now();
-    req.body.ongoing = false
+    console.log(req.body);
     var updated = _.merge(check, req.body);
+    //var updated = Object.assign({}, check, req.body);
+    //updated.timeEnd = Date.now();
+    //updated.ongoing = false;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(check);
