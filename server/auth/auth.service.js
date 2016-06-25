@@ -14,6 +14,7 @@ var validateJwt = expressJwt({ secret: config.secrets.session });
  * Otherwise returns 403
  */
 function isAuthenticated() {
+  console.log('isAuthenticated');
   return compose()
     // Validate jwt
     .use(function(req, res, next) {
@@ -26,6 +27,7 @@ function isAuthenticated() {
     // Attach user to request
     .use(function(req, res, next) {
       User.findById(req.user._id, function (err, user) {
+        console.log('use');
         if (err) return next(err);
         if (!user) return res.status(401).send('Unauthorized');
 

@@ -1,26 +1,46 @@
 [{
   "provider": "local",
-  "firstName": "TestOne",
-  "lastName": "User",
+  "firstName": "Test",
+  "lastName": "One",
   "email": "test@test.com",
-  "password": "test",
-  "creditcard": "1234123412341234",
-  "creditcardSecurity": "000"
-}, {
-  "provider": "local",
-  "firstName": "TestTwo",
-  "lastName": "User",
-  "email": "test@test.com",
-  "password": "test",
-  "creditcard": "1234123412341234",
-  "creditcardSecurity": "000"
-}, {
-  "provider": "local",
-  "role": "admin",
-  "firstName": "TestThree",
-  "lastName": "User",
-  "email": "admin@admin.com",
-  "password": "admin",
-  "creditcard": "1234123412341234",
-  "creditcardSecurity": "000"
-}]
+  "password": "123",
+  "code": "1",
+  "creditCard": {
+    "number": "1234123412341234",
+    "expirationYear": 2016,
+    "expirationMonth": 12,
+    "security": "123"
+  }
+},
+  {
+    "provider": "local",
+    "firstName": "Mario",
+    "lastName": "Rossi",
+    "email": "mario@test.com",
+    "password": "123",
+    "code": "2",
+    "creditCard": {
+      "number": "1234123412341234",
+      "exporationYear": 2017,
+      "expirationMonth": 6,
+      "security": "123"
+    }
+  },
+  {
+    "provider": "local",
+    "firstName": "Peter",
+    "lastName": "Schmidt",
+    "email": "peter@test.com",
+    "password": "123",
+    "code": "3",
+    "creditCard": {
+      "number": "1234123412341234",
+      "exporationYear": 2018,
+      "expirationMonth": 12,
+      "security": "123"
+    }
+  }
+
+
+
+]
