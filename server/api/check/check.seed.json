@@ -1,0 +1,49 @@
+[{
+  "userId": "the name",
+  "deviceId": "0123456789",
+  "busId": 5,
+  "lineId": 60,
+  "coordinates": "description",
+  "otherPassengers": [{
+    "fare": 0,
+    "price": 1.30
+  }],
+  "batteryLevel": 50,
+  "destination": {
+    "id": 234,
+    "name": ""
+  },
+  "time": 1466841150612,
+  "meanType": "bus",
+  "opened": true
+}, {
+  "userId": "the name",
+  "deviceId": "0123456789",
+  "busId": 5,
+  "lineId": 60,
+  "coordinates": "description",
+  "otherPassengers": null,
+  "batteryLevel": 50,
+  "destination": "",
+  "time": 1466841150612,
+  "meanType": "bus",
+  "opened": true
+}, {
+  "userId": "the name",
+  "deviceId": "0123456789",
+  "busId": 5,
+  "lineId": 60,
+  "coordinates": "description",
+  "otherPassengers": [{
+    "fare": 0,
+    "price": 1.30
+  }, {
+    "fare": 1,
+    "price": 1.80
+  }],
+  "batteryLevel": 50,
+  "destination": "",
+  "time": 1466841150612,
+  "meanType": "bus",
+  "opened": true
+}]
