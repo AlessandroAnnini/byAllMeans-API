@@ -1,14 +1,26 @@
-[
-	{
-	    "provider": "local",
-	    "name": "Test User",
-	    "email": "test@test.com",
-	    "password": "test"
-  	}, {
-	    "provider": "local",
-	    "role": "admin",
-	    "name": "Admin",
-	    "email": "admin@admin.com",
-	    "password": "admin"
-  	}
-]
+[{
+  "provider": "local",
+  "firstName": "TestOne",
+  "lastName": "User",
+  "email": "test@test.com",
+  "password": "test",
+  "creditcard": "1234123412341234",
+  "creditcardSecurity": "000"
+}, {
+  "provider": "local",
+  "firstName": "TestTwo",
+  "lastName": "User",
+  "email": "test@test.com",
+  "password": "test",
+  "creditcard": "1234123412341234",
+  "creditcardSecurity": "000"
+}, {
+  "provider": "local",
+  "role": "admin",
+  "firstName": "TestThree",
+  "lastName": "User",
+  "email": "admin@admin.com",
+  "password": "admin",
+  "creditcard": "1234123412341234",
+  "creditcardSecurity": "000"
+}]

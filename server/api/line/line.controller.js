@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Line = require('./line.model');
+var Stop = require('../stop/stop.model');
 
 // Get list of lines
 exports.index = function(req, res) {
@@ -13,27 +14,19 @@ exports.index = function(req, res) {
 
 // Get a single line
 exports.show = function(req, res) {
-  // Line.findById(req.params.id, function (err, line) {
-  //   if(err) { return handleError(res, err); }
-  //   if(!line) { return res.status(404).send('Not Found'); }
-  //   return res.json(line);
-  // });
-  console.log(req.params.id);
+  Line.findOne({'properties.LINIEN': req.params.id.toString()}, function(err, line) {
+    if(err) { return handleError(res, err); }
+    if(!line) { return res.status(404).send('Not Found'); }
+    return res.json(line);
+  });
+};
 
-  // Line.find({'properties.LINIEN': req.params.id.toString()}, function(err, line) {
-  //   if(err) { console.log(err); return handleError(res, err); }
-  //   if(!line) { return res.status(404).send('Not Found'); }
-  //   console.log(line);
-  //   return res.json(line[0]);
-  // });
-
-  Line.find()
-    .then(function(err, line) {
-      if(err) { console.log(err); return handleError(res, err); }
-      if(!line) { return res.status(404).send('Not Found'); }
-      console.log(line);
-      return res.json(line[0]);
-    });
+exports.stops = function(req, res) {
+  Stop.find({'properties.LINNR': req.params.id}, function (err, stops) {
+    if(err) { return handleError(res, err); }
+    if(!stops) { return res.status(404).send('Not Found'); }
+    return res.json(stops);
+  });
 };
 
 // Creates a new line in the DB.

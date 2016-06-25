@@ -5,7 +5,9 @@ var mongoose = require('mongoose'),
 
 var LineSchema = new Schema({
   // OBJECTID: Double,
-  // LINIEN: String,
+  // properties: {
+  //   LINIEN: String
+  // }
   // UNTERNEHME: Boolean,
   // AKT_DATE: Object
 }, {

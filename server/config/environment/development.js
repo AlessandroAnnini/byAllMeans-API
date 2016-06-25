@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/bamserver-dev'
   },
 
-  seedDB: false
+  seedDB: true
 };
