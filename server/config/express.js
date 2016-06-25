@@ -18,6 +18,8 @@ var passport = require('passport');
 module.exports = function(app) {
   var env = app.get('env');
 
+  app.disable('x-powered-by');
+
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());

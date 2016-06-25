@@ -4,6 +4,8 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var Check = require('../check/check.model');
+var Line = require('../line/line.model');
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -44,6 +46,54 @@ exports.show = function (req, res, next) {
     if (err) return next(err);
     if (!user) return res.status(401).send('Unauthorized');
     res.json(user.profile);
+  });
+};
+
+exports.showByCode = function(req, res) {
+  User.findOne({code: req.params.code}, function (err, user) {
+    if(err) { return handleError(res, err); }
+    if(!check) { return res.status(404).send('Not Found'); }
+    return res.json(user);
+  });
+};
+
+exports.showByName = function(req, res) {
+  var firstName = req.params.name.split('+')[0];
+  var lastName = req.params.name.split('+')[1];
+  User.find({firstName: firstName, lastName: lastName}, function (err, user) {
+    if(err) { return handleError(res, err); }
+    if(!check) { return res.status(404).send('Not Found'); }
+    return res.json(user);
+  });
+};
+
+exports.historyByCode = function(req, res) {
+  var result = null;
+
+  User.find({code: req.params.code})
+    .then(function (err, user) {
+      if(err) { return handleError(res, err); }
+      if(!user) { return res.status(404).send('Not Found'); }
+      result.user = user;
+      return Check.find({userId: user._id});
+    })
+    .then(function(err, checks) {
+      if(err) { return handleError(res, err); }
+      if(!checks) { return res.status(404).send('Not Found'); }
+
+      result.checks = checks;
+
+      return res.json(user);
+    })
+};
+
+exports.historyByName = function(req, res) {
+  var firstName = req.params.name.split('+')[0];
+  var lastName = req.params.name.split('+')[1];
+  User.find({firstName: firstName, lastName: lastName}, function (err, user) {
+    if(err) { return handleError(res, err); }
+    if(!check) { return res.status(404).send('Not Found'); }
+    return res.json(user);
   });
 };
 

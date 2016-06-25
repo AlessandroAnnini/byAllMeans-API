@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Check = require('./check.model');
+var Bus = require('../bus/bus.model');
 
 // Get list of checks
 exports.index = function(req, res) {
@@ -20,11 +21,26 @@ exports.show = function(req, res) {
   });
 };
 
+exports.showByUserId = function(req, res) {
+  Check.find({'userId': req.params.userId}, function (err, checks) {
+    if(err) { return handleError(res, err); }
+    if(!checks) { return res.status(404).send('Not Found'); }
+    return res.json(checks);
+  });
+};
+
 // Creates a new check in the DB.
 exports.create = function(req, res) {
-  Check.create(req.body, function(err, check) {
+  Bus.findOne({number: req.params.number}, function (err, bus) {
     if(err) { return handleError(res, err); }
-    return res.status(201).json(check);
+    if(!bus) { return res.status(404).send('Not Found'); }
+
+    req.body.timeStart = Date.now();
+    Check.create(req.body, function(err, check) {
+      if(err) { return handleError(res, err); }
+      return res.status(201).json(check);
+    });
+
   });
 };
 
@@ -34,6 +50,8 @@ exports.update = function(req, res) {
   Check.findById(req.params.id, function (err, check) {
     if (err) { return handleError(res, err); }
     if(!check) { return res.status(404).send('Not Found'); }
+    req.body.timeEnd = Date.now();
+    req.body.ongoing = false
     var updated = _.merge(check, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
